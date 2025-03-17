@@ -454,7 +454,7 @@ const Home = () => {
         </div>
     </div>
 </section>
-<Instagram/>
+{/* <Instagram/> */}
 
         </>
     );

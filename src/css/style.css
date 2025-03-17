@@ -1,9 +1,94 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Pacifico&family=Permanent+Marker&family=Signika:wght@300..700&display=swap');
 
+/* Navbar Styles */
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	background-color: #fff; /* Adjust as needed */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand img {
+	height: 40px; /* Adjust as needed */
+  }
+  
+  .navbar-content {
+	display: flex;
+	align-items: center;
+	gap: 20px; /* Space between menu items and buttons */
+	color: black;
+  }
+  
+  .navbar-nav,
+  .navbar-buttons {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 15px; /* Space between items */
+  }
+  
+  .navbar-nav li,
+  .navbar-buttons li {
+	position: relative;
+  }
+  
+  .navbar-buttons a {
+	/* display: flex; */
+	align-items: center;
+	gap: 5px;
+  }
+  
+  .mobile-menu-toggle {
+	display: none; /* Hide by default */
+	cursor: pointer;
+	font-size: 1.5rem;
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+	.mobile-menu-toggle {
+	  display: block; /* Show on mobile */
+	  color: #000;
+	}
 
+	.navbar-content {
+	  display: none; /* Hide by default on mobile */
+	  flex-direction: column;
+	  position: absolute;
+	  top: 75px; /* Adjust based on navbar height */
+	  left: 0;
+	  width: 100%;
+	  background-color: #fff;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  z-index: 1000;
+	  padding: 10px;
+	}
+  
+	.navbar-content.mobile-menu-open {
+	  display: flex; /* Show when mobile menu is open */
+	}
+  .relative svg{
+	display: none;
+  }
+	.navbar-nav
+{
+	  flex-direction: column!important;
+	  width: 100%;
+	  gap: 10px;
+	}
+  }
 body{
 	background-color: #F4F6FF;
+}
+.navbar-buttons .font-semibold{
+	border: 1px solid #010101;
+    padding: 6px;
+    border-radius: 6px;
 }
 	.bree-serif-regular {
 		font-family: "Bree Serif", serif;
@@ -3780,7 +3865,7 @@ font-family: "Bree Serif", serif;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #f4f6ff;
+	background-color: orange;
 	padding: 10px 20px;
 	color: white;
   }
