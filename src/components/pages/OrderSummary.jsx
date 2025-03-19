@@ -65,14 +65,14 @@ const OrderSummary = () => {
 
     setIsLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/place-order", orderData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/place-order`, orderData);
       toast.success("Order placed successfully!");
       alert("Order placed successfully!");
       setTimeout(() => {
         navigate("/");
       }, 2000);
 
-      await axios.post("http://localhost:5000/api/send-email", 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/send-email`, 
         {
           email: currentUser.email,
           subject: "Order Confirmation",
@@ -82,7 +82,7 @@ const OrderSummary = () => {
       );
       
 
-      await axios.post("http://localhost:5000/api/admin/orders", orderData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/orders`, orderData);
     } catch (error) {
       toast.error("Failed to place order. Please try again.");
     } finally {

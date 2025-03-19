@@ -16,7 +16,7 @@ const ProductListing = () => {
     if (selectedCategory) {
       setLoading(true); // Set loading to true when fetching starts
       axios
-        .get(`http://localhost:5000/products?category=${selectedCategory}`)
+        .get(`${import.meta.env.VITE_API_URL}/products?category=${selectedCategory}`)
         .then((response) => {
           setProducts(response.data); // Set products if data is fetched successfully
           setError(null); // Clear any previous errors

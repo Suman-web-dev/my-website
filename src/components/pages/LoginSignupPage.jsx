@@ -45,7 +45,7 @@ const LoginSignupPage = () => {
     if (isLogin) {
       try {
         // Call the login API
-        const response = await axios.post("http://localhost:5000/api/auth/login", {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
           email,
           password,
         });
@@ -74,7 +74,7 @@ const LoginSignupPage = () => {
   
       try {
         // Call the signup API
-        const response = await axios.post("http://localhost:5000/api/auth/signup", {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
           username,
           email,
           password,
@@ -103,7 +103,7 @@ const LoginSignupPage = () => {
 
     try {
       // Call the forgot password API
-      const response = await axios.post("http://localhost:5000/api/auth/forgot-password", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
         email: forgotPasswordEmail,
       });
       console.log("Forgot password response:", response.data);
