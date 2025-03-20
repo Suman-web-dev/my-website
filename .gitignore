@@ -7,8 +7,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
-dist-ssr
+
+# Build output
+# dist-ssr  <-- Comment out or remove this line
+# dist      <-- Ensure this line is not present
 *.local
 
 # Editor directories and files
