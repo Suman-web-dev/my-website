@@ -28,6 +28,9 @@ import { AuthProvider } from "./components/pages/AuthContext"; // Import AuthPro
 import ErrorBoundary from "./components/pages/ErrorBoundary"; // Import ErrorBoundary
 
 function App() {
+  useEffect(() => {
+    console.log("Backend API URL:", import.meta.env.VITE_API_URL);
+  }, []);
   library.add(fas, fab);
 
   const [loading, setLoading] = useState(true); // Show preloader first
