@@ -15,7 +15,7 @@ const Navbar = () => {
 
   // Fetch categories from the backend
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/categories`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((response) => {
         setCategories(response.data);
       })
