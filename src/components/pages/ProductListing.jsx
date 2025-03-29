@@ -13,27 +13,40 @@ const ProductListing = () => {
 
   // Fetch products based on the selected category
   useEffect(() => {
+    console.log("Fetching all products...");
+    
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/products`) // Fetch all products
+      .then((response) => {
+        console.log("All Products:", response.data); // ✅ Debugging
+      })
+      .catch((error) => {
+        console.error("Error fetching all products:", error);
+      });
+  
     if (selectedCategory) {
-      setLoading(true); // Set loading to true when fetching starts
+      setLoading(true);
       axios
         .get(`${import.meta.env.VITE_API_URL}/products?category=${selectedCategory}`)
         .then((response) => {
-          setProducts(response.data); // Set products if data is fetched successfully
-          setError(null); // Clear any previous errors
+          console.log(`Products for category: ${selectedCategory}`, response.data); // ✅ Debugging
+          setProducts(response.data);
+          setError(null);
         })
         .catch((error) => {
           console.error("Error fetching products:", error);
-          setError("Failed to fetch products. Please try again later."); // Set error message
-          setProducts([]); // Clear products in case of error
+          setError("Failed to fetch products. Please try again later.");
+          setProducts([]);
         })
         .finally(() => {
-          setLoading(false); // Set loading to false when fetching is done
+          setLoading(false);
         });
     } else {
-      setProducts([]); // Clear products if no category is selected
-      setLoading(false); // Set loading to false
+      setProducts([]);
+      setLoading(false);
     }
   }, [selectedCategory]);
+  
 
   return (
     <div className="p-4">
