@@ -16,25 +16,27 @@ const ProductListing = () => {
     console.log("Fetching all products...");
     
     axios
-      .get(`${import.meta.env.VITE_API_URL}/products`) // Fetch all products
+      .get(`${import.meta.env.VITE_API_URL}/products`)
       .then((response) => {
-        console.log("All Products:", response.data); // ✅ Debugging
+        console.log("✅ All Products Fetched:", response.data);
       })
       .catch((error) => {
-        console.error("Error fetching all products:", error);
+        console.error("❌ Error fetching all products:", error);
       });
   
     if (selectedCategory) {
+      console.log(`🔍 Fetching products for category: ${selectedCategory}`);
+  
       setLoading(true);
       axios
         .get(`${import.meta.env.VITE_API_URL}/products?category=${selectedCategory}`)
         .then((response) => {
-          console.log(`Products for category: ${selectedCategory}`, response.data); // ✅ Debugging
+          console.log(`✅ Products for category: ${selectedCategory}`, response.data);
           setProducts(response.data);
           setError(null);
         })
         .catch((error) => {
-          console.error("Error fetching products:", error);
+          console.error("❌ Error fetching products:", error);
           setError("Failed to fetch products. Please try again later.");
           setProducts([]);
         })
@@ -42,10 +44,12 @@ const ProductListing = () => {
           setLoading(false);
         });
     } else {
+      console.log("⚠️ No category selected. Clearing products...");
       setProducts([]);
       setLoading(false);
     }
   }, [selectedCategory]);
+  
   
 
   return (
