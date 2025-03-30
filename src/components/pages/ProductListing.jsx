@@ -16,7 +16,7 @@ const ProductListing = () => {
     console.log("Fetching all products...");
     
     axios
-      .get(`${import.meta.env.VITE_API_URL}/products`)
+      .get(`${import.meta.env.VITE_API_URL}/api/products`)
       .then((response) => {
         console.log("✅ All Products Fetched:", response.data);
       })
@@ -29,7 +29,7 @@ const ProductListing = () => {
   
       setLoading(true);
       axios
-        .get(`${import.meta.env.VITE_API_URL}/products?category=${selectedCategory}`)
+        .get(`${import.meta.env.VITE_API_URL}/api/products?category=${selectedCategory}`)
         .then((response) => {
           console.log(`✅ Products for category: ${selectedCategory}`, response.data);
           setProducts(response.data);
