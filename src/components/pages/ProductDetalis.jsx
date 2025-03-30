@@ -19,7 +19,7 @@ const ProductDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://e-comm-website-7380.onrender.com/products/${productId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/products/${productId}`)
       .then((response) => {
         setProduct(response.data);
         setError(null);
@@ -37,7 +37,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (product) {
       axios
-        .get(`${import.meta.env.VITE_API_URL}/products/related?category=${product.category}`)
+        .get(`${import.meta.env.VITE_API_URL}/api/products/related?category=${product.category}`)
         .then((response) => {
           setRelatedProducts(response.data);
         })
