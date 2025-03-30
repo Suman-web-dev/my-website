@@ -35,17 +35,36 @@ const ProductDetails = () => {
   }, [productId]);
 
   useEffect(() => {
-    if (product) {
-      axios
-        .get(`${import.meta.env.VITE_API_URL}/api/products/related?category=${product.category}`)
-        .then((response) => {
-          setRelatedProducts(response.data);
-        })
-        .catch((error) => {
+    if (!product) return;
+  
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+  
+    const fetchRelatedProducts = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products/related?category=${product.category}`,
+          { signal }
+        );
+        
+        if (response.data && Array.isArray(response.data)) {
+          // Filter out current product if it appears in related
+          const filtered = response.data.filter(item => item._id !== product._id);
+          setRelatedProducts(filtered);
+        } else {
+          setRelatedProducts([]);
+        }
+      } catch (error) {
+        if (!axios.isCancel(error)) {
           console.error("Error fetching related products:", error);
           setRelatedProducts([]);
-        });
-    }
+        }
+      }
+    };
+  
+    fetchRelatedProducts();
+  
+    return () => abortController.abort();
   }, [product]);
 
   const handleColorSelect = (color) => {
