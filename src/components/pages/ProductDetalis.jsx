@@ -17,21 +17,30 @@ const ProductDetails = () => {
   const { dispatch } = useCart(); // Use the useCart hook to get dispatch
 
   useEffect(() => {
-    setLoading(true);
-    axios
-    axios.get(`${import.meta.env.VITE_API_URL}/api/products/${productId}`)
-      .then((response) => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products/${productId}`
+        );
         setProduct(response.data);
         setError(null);
-      })
-      .catch((error) => {
-        console.error("Error fetching product details:", error);
+      } catch (error) {
+        console.error("Full error details:", {
+          url: error.config?.url,  // This shows the exact URL being called
+          status: error.response?.status,
+          data: error.response?.data
+        });
         setError("Failed to fetch product details. Please try again later.");
         setProduct(null);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+  
+    if (productId) {
+      fetchProduct();
+    }
   }, [productId]);
 
   useEffect(() => {
